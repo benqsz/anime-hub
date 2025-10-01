@@ -2,27 +2,45 @@
   "name": "anime-hub",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint --fix .",
+    "prettier": "prettier --write .",
+    "type-check": "tsc --noEmit",
+    "db:up": "docker-compose -f db-compose.yml up",
+    "db:down": "docker-compose -f db-compose.yml down",
+    "payload": "payload"
   },
   "dependencies": {
+    "@payloadcms/db-postgres": "^3.58.0",
+    "@payloadcms/next": "^3.58.0",
+    "@payloadcms/payload-cloud": "^3.58.0",
+    "@payloadcms/richtext-lexical": "^3.58.0",
+    "@payloadcms/ui": "^3.58.0",
+    "graphql": "^16.11.0",
+    "lucide-react": "^0.544.0",
+    "next": "15.5.4",
+    "payload": "^3.58.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.5.4"
+    "sharp": "^0.34.4"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
-    "@eslint/eslintrc": "^3"
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   },
   "packageManager": "pnpm@10.17.1+sha512.17c560fca4867ae9473a3899ad84a88334914f379be46d455cbf92e5cf4b39d34985d452d2583baf19967fa76cb5c17bc9e245529d0b98745721aa7200ecaf7a"
 }
