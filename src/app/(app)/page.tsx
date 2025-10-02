@@ -1,3 +1,5 @@
-export default function HomePage() {
-  return <div>home</div>;
-}
+import PayloadPage, { generateMetadata } from '@/app/(app)/[slug]/page';
+
+export { generateMetadata };
+
+export default PayloadPage;

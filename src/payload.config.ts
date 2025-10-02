@@ -1,4 +1,5 @@
 import { postgresAdapter } from '@payloadcms/db-postgres';
+import { seoPlugin } from '@payloadcms/plugin-seo';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import path from 'path';
 import { buildConfig } from 'payload';
@@ -6,6 +7,7 @@ import sharp from 'sharp';
 import { fileURLToPath } from 'url';
 
 import { Media } from '@/collections/Media';
+import { Pages } from '@/collections/Pages';
 import { Users } from '@/collections/Users';
 import { ENV, IS_DEV } from '@/lib/utils';
 
@@ -50,7 +52,16 @@ export default buildConfig({
     },
   },
   globals: [],
-  collections: [Users, Media],
+  collections: [Users, Media, Pages],
+  plugins: [
+    seoPlugin({
+      collections: [Pages.slug],
+      uploadsCollection: 'media',
+      tabbedUI: true,
+      generateURL: ({ doc }) => `/${doc.slug === 'home' ? '' : doc.slug}`,
+      generateTitle: ({ doc }) => `${doc.title} | Anime Hub`,
+    }),
+  ],
   db: postgresAdapter({
     pool: {
       connectionString: ENV('DATABASE_URI'),
